@@ -27,6 +27,9 @@ export default defineComponent({
   components: {
     ClockWatch,
   },
+  emits: [
+    'TimerIsStoped'
+  ],
   data() {
     return {
       timeInSeconds: 0,
@@ -45,9 +48,13 @@ export default defineComponent({
     stop() {
       this.isTimerCounting = false,
       clearInterval(this.Timer);
+      this.$emit('TimerIsStoped', this.timeInSeconds)
+      this.timeInSeconds = 0
     },
   },
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>
