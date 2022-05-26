@@ -3,13 +3,13 @@
     class="is-flex is-align-item-center is-justify-content-space-around is-align-items-center"
   >
     <ClockWatch :timeInSeconds="timeInSeconds" />
-    <button class="button mx-2" @click="play">
+    <button class="button mx-2" @click="play" :disabled="isTimerCounting">
       <span class="icon">
         <i class="fas fa-play"></i>
       </span>
       <span>play</span>
     </button>
-    <button class="button mx-2" @click="stop">
+    <button class="button mx-2" @click="stop" :disabled="!isTimerCounting">
       <span class="icon">
         <i class="fas fa-stop"></i>
       </span>
@@ -31,16 +31,19 @@ export default defineComponent({
     return {
       timeInSeconds: 0,
       Timer: 0,
+      isTimerCounting: false
     };
   },
   methods: {
     play() {
+      this.isTimerCounting = true,
       this.Timer = setInterval(() => {
         this.timeInSeconds += 1;
       }, 1000);
     },
 
     stop() {
+      this.isTimerCounting = false,
       clearInterval(this.Timer);
     },
   },
