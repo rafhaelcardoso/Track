@@ -1,22 +1,29 @@
 <template>
   <div class="box has-text-weight-bold">
     <div class="columns">
-      <div class="column is-7">Descrição da Tarefa</div>
+      <div class="column is-7">{{task.description}}</div>
       <div class="column">
-        <ClockWatch :timeInSeconds='15' />
+        <ClockWatch :timeInSeconds='task.durationInSeconds' />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
 import ClockWatch from "./ClockWatch.vue";
+import iTask from "../interfaces/iTasks"
 
 export default defineComponent({
   name: "TaskDone",
   components: {
     ClockWatch,
+  },
+  props: {
+    task: {
+      type: Object as PropType<iTask>,
+      required: true
+    }
   }
 });
 </script>

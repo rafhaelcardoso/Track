@@ -36,13 +36,18 @@ export default defineComponent({
       TaskDescription: ''
     };
   },
+  emits: ['SavingTask'],
   methods: {
-    FinishTask( timeSpent: number ): void{
-      console.log('tempo da tarefa', timeSpent)
-      console.log('descrição da tarefa', this.TaskDescription)
+    FinishTask (timeSpent: number) : void {
+      console.log('tempo da tarefa', timeSpent),
+      console.log('descrição da tarefa', this.TaskDescription),
+      this.$emit('SavingTask', {
+        durationInSeconds: timeSpent,
+        description: this.TaskDescription
+      })
       this.TaskDescription = ''
     },
-  },
+  }
 });
 </script>
 
