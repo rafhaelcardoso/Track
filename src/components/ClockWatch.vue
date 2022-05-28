@@ -1,6 +1,6 @@
 <template>
   <section class="mx-2">
-    <strong> {{ elapsedTime }} </strong>
+    <strong class="display"> {{ elapsedTime }} </strong>
   </section>
 </template>
 
@@ -12,8 +12,8 @@ export default defineComponent({
   props: {
     timeInSeconds: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   computed: {
     elapsedTime(): string {
@@ -23,4 +23,9 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.display{
+  color: var(--text-color);
+}
+
+</style>

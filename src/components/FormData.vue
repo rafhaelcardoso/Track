@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="box formstyle mx-3 my-2">
     <div class="columns">
       <div
         class="column is-8"
@@ -8,7 +8,7 @@
       >
         <input
           type="text"
-          class="input"
+          class="input inputbg"
           placeholder="Qual tarefa você deseja iniciar ?"
           v-model="TaskDescription"
         />
@@ -51,5 +51,14 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style>
+.formstyle{
+  color: var(--text-color);
+  background-color: var(--clock-bg);
+}
+
+.inputbg{
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
 </style>

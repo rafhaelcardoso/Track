@@ -1,23 +1,25 @@
 <template>
-  <div class="box has-text-weight-bold">
+  <YellowBox>
     <div class="columns">
-      <div class="column is-7">{{task.description}}</div>
+      <div class="column is-7">{{ task.description || 'Tarefa sem descrição' }}</div>
       <div class="column">
         <ClockWatch :timeInSeconds='task.durationInSeconds' />
       </div>
     </div>
-  </div>
+  </YellowBox>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import ClockWatch from "./ClockWatch.vue";
 import iTask from "../interfaces/iTasks"
+import YellowBox from './YellowBox.vue'
 
 export default defineComponent({
   name: "TaskDone",
   components: {
     ClockWatch,
+    YellowBox
   },
   props: {
     task: {
