@@ -1,6 +1,6 @@
 <template>
   <section class="projects my-3">
-    <h1>ROTA DE PROJETOS</h1>
+    <h1 class="title">Projetos</h1>
     <form @submit.prevent="savingProject">
       <div for="projectName" class="label">
         Nome do Projeto
@@ -12,7 +12,7 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>Nome do projecto</th>
+          <th>Nome do projeto</th>
         </tr>
       </thead>
       <tbody>
@@ -26,27 +26,29 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import iProjects from "../interfaces/iProjects";
+import { computed, defineComponent } from "vue";
+import { useStore } from "@/store";
 
 export default defineComponent({
   name: "projectsView",
   data() {
     return {
       projectName: "",
-      projects: [] as iProjects[],
     };
   },
   methods: {
     savingProject() {
-      const project: iProjects = {
-        name: this.projectName,
-        id: new Date().toISOString(),
-      };
-      this.projects.push(project);
+      this.store.commit('ADICIONA_PROJETO', this.projectName),
       this.projectName = "";
     },
   },
+  setup () {
+    const store = useStore()
+    return {
+      store,
+      projects: computed(() => store.state.projects)
+    }
+  }
 });
 </script>
 
