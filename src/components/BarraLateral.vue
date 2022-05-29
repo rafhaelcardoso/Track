@@ -3,9 +3,27 @@
     <h1>
       <img src="../assets/logo.png" alt="Logo">
     </h1>
+    <div class="has-text-centered">
     <button class="button" @click="switchTheme">
       {{ themeSelector }}
     </button>
+    </div>
+     <nav class="panel mt-5">
+      <ul>
+        <li>
+          <router-link to="/" class="link">
+            <i class="fas fa-tasks"></i>
+            tarefas
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/projetos" class="link">
+            <i class="fas fa-project-diagram"></i>
+            projetos
+          </router-link>
+        </li>
+      </ul>
+    </nav>
   </header>
 </template>
 
