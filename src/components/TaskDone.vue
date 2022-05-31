@@ -1,7 +1,8 @@
 <template>
   <YellowBox>
     <div class="columns">
-      <div class="column is-7">{{ task.description || 'Tarefa sem descrição' }}</div>
+      <div class="column is-5">{{ task.description || 'Tarefa sem descrição' }}</div>
+      <div class="column is-4">{{ task.project?.name || 'Sem projeto vinculado'}}</div>
       <div class="column">
         <ClockWatch :timeInSeconds='task.durationInSeconds' />
       </div>
