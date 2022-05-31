@@ -13,6 +13,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useStore } from "@/store";
+import { EDIT_PROJECT, ADD_PROJECT } from "@/store/mutations_type";
 
 export default defineComponent({
   name: "formList",
@@ -33,12 +34,12 @@ export default defineComponent({
   methods: {
     savingProject() {
       if (this.id){
-        this.store.commit('CHANGE_PROJECT', {
+        this.store.commit(EDIT_PROJECT, {
           id: this.id,
           name: this.projectName
         })
       } else {
-        this.store.commit('ADD_PROJECT', this.projectName)
+        this.store.commit(ADD_PROJECT, this.projectName)
       }
       this.projectName = "";
       this.$router.push('/projetos')
