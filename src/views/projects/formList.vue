@@ -1,6 +1,5 @@
 <template>
-  <section class="projects my-3">
-    <h1 class="title">Projetos</h1>
+  <section>
     <form @submit.prevent="savingProject">
       <div for="projectName" class="label">
         Nome do Projeto
@@ -53,9 +52,3 @@ export default defineComponent({
   }
 });
 </script>
-
-<style scoped>
-.projects {
-  padding: 1.25rem;
-}
-</style>
