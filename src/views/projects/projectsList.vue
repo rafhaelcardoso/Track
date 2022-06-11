@@ -39,6 +39,7 @@
 <script lang="ts">
 import { computed, defineComponent } from "vue";
 import { useStore } from "@/store";
+import { GET_PROJECTS } from "@/store/actions_type";
 
 export default defineComponent({
   name: "projectsList",
@@ -49,6 +50,7 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
+    store.dispatch(GET_PROJECTS)
     return {
       projects: computed(() => store.state.projects),
       store
