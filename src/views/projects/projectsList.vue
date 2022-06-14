@@ -45,7 +45,7 @@ export default defineComponent({
   name: "projectsList",
   methods: {
     deleteProject(id: string){
-      this.store.commit('DELETE_PROJECT', id)
+      this.store.dispatch('REMOVE_PROJECT', id)
     }
   },
   setup() {

@@ -3,7 +3,7 @@ import { createStore, Store, useStore as vuexUseStore } from "vuex";
 import { InjectionKey } from 'vue'
 import iProjects from "@/interfaces/iProjects";
 import { ADD_PROJECT, DELETE_PROJECT, EDIT_PROJECT, GET_ALL_PROJECTS } from "./mutations_type";
-import { GET_PROJECTS } from "./actions_type";
+import { CHANGE_PROJECT, GET_PROJECTS, REGISTER_PROJECT, REMOVE_PROJECT } from "./actions_type";
 import http from '@/http'
 
 interface State {
@@ -36,10 +36,23 @@ export const store = createStore<State>({
         }
     },
     actions: {
-         [GET_PROJECTS] ({ commit }) {
+        [GET_PROJECTS] ({ commit }) {
             http.get('projects')
                 .then(response => commit(GET_ALL_PROJECTS, response.data))
-         }
+         },
+         [REGISTER_PROJECT] ( context, projectName: string) {
+             http.post('/projects', {
+                 name: projectName
+             })
+         },
+         [CHANGE_PROJECT] ( context, project: iProjects) {
+            http.put(`/projects/${project.id}`, project)
+        },
+        [REMOVE_PROJECT] ({commit}, id: string) {
+            http.delete(`/projects/${id}`)
+            .then(() => commit (DELETE_PROJECT, id))
+
+        }
     }
 })
 

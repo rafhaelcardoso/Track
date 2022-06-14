@@ -13,7 +13,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useStore } from "@/store";
-import { EDIT_PROJECT, ADD_PROJECT } from "@/store/mutations_type";
+import { CHANGE_PROJECT, REGISTER_PROJECT } from "@/store/actions_type";
 
 export default defineComponent({
   name: "formList",
@@ -34,16 +34,20 @@ export default defineComponent({
   methods: {
     savingProject() {
       if (this.id){
-        this.store.commit(EDIT_PROJECT, {
+        this.store.dispatch(CHANGE_PROJECT, {
           id: this.id,
           name: this.projectName
-        })
+        }).then(() => this.successAction());
       } else {
-        this.store.commit(ADD_PROJECT, this.projectName)
+        this.store.dispatch(REGISTER_PROJECT, this.projectName)
+          .then(() => this.successAction());
       }
+    },
+
+    successAction() {
       this.projectName = "";
       this.$router.push('/projetos')
-    },
+    }
   },
   setup () {
     const store = useStore()
